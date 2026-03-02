@@ -1,0 +1,147 @@
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+%\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\useoutertheme[footline=authorinstitutetitle,subsection=false]{smoothbars}
+\makeatletter % [add curpage/total page at the bottom](http://tex.stackexchange.com/questions/100838/beamer-dresden-theme-miniframes-appeareance-and-frame-number-insertion)
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+\setbeamertemplate{footline}
+  {%
+    % 下端クリップ対策：\leavevmode + \vbox で高さを正しく確保してから積む
+    \leavevmode%
+    \vbox{%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=0.45ex,dp=0ex]{upper separation line foot}
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=2.6ex,dp=1.2ex]{author in head/foot}%
+        \usebeamerfont{author in head/foot}%
+        \hbox to \paperwidth{%
+          \hspace{.3cm}%
+          \makebox[0pt][l]{\insertshortauthor}%
+          \hfil%
+          \makebox[0pt][c]{\tiny ARKRAY confidential}%
+          \hfil%
+          \makebox[0pt][r]{{\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}}%
+          \hspace{.3cm}%
+        }%
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=2.6ex,dp=1.2ex]{title in head/foot}%
+        \usebeamerfont{title in head/foot}%
+        \hbox to \paperwidth{%
+          \hspace{.3cm}%
+          \makebox[0pt][l]{\insertshorttitle}%
+          \hfil%
+          \makebox[0pt][c]{\tiny Copyright 2026 ARKRAY, Inc. All Rights Reserved}%
+          \hfil%
+          \makebox[0pt][r]{\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}%
+          \hspace{.3cm}%
+        }%
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=0.45ex,dp=0ex]{lower separation line foot}
+      \end{beamercolorbox}%
+    }%
+    \vskip0.8ex%
+  }
+\makeatother
+
+\useinnertheme{circles}
+
+%\useoutertheme{default}
+%\useinnertheme[shadow=true]{rounded}
+
+% Theme color (blue-gray)
+\RequirePackage{listings}
+
+\xdefinecolor{tsinghua}{rgb}{0.15,0.35,0.45}  % blue-gray
+
+% Code helpers / colors
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+% Modern listings style
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\bfseries\color{tsinghua},
+  commentstyle=\itshape\color{halfgray},
+  stringstyle=\color{deepgreen},
+  emphstyle=\bfseries\color{deepred},
+  numbers=left,
+  numberstyle=\scriptsize\color{halfgray},
+  numbersep=6pt,
+  frame=single,
+  rulecolor=\color{black!15},
+  framerule=0.4pt,
+  backgroundcolor=\color{black!3},
+  tabsize=2,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+}
+
+\setbeamercolor{footline}{bg=tsinghua}
+\setbeamercolor{frametitle}{bg=tsinghua,fg=white}
+\setbeamercolor{title}{bg=tsinghua}
+\setbeamerfont{frametitle}{size=\large}
+
+% Show logo at the far-right of the title bar
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.8ex,dp=1.1ex,leftskip=.3cm,rightskip=.3cm]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle\hfill%
+    \raisebox{-0.2ex}{\includegraphics[height=2.0ex]{pic/Arkray\space brand\space logo.png}}%
+  \end{beamercolorbox}%
+}
+
+%\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+
+\setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black}
+%\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
+\setbeamercolor{titlelike}{parent=palette primary}
+
+%% try
+\setbeamercolor{block title}{bg=tsinghua,fg=white}
+\setbeamercolor*{block title example}{use={normal text,example text},bg=white,fg=tsinghua}
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{item projected}{fg=white}
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+%\setbeamercolor{palette sidebar quaternary}{fg=white}
+\setbeamercolor{section in sidebar}{fg=black}
+\setbeamercolor{section in sidebar shaded}{fg=gray}
+\setbeamercolor{separation line}{}
+\setbeamercolor{sidebar}{bg=tsinghua}
+\setbeamercolor{sidebar}{parent=palette primary}
+\setbeamercolor{structure}{fg=tsinghua}
+\setbeamercolor{subsection in sidebar}{fg=black}
+\setbeamercolor{subsection in sidebar shaded}{fg=gray}
+\AtBeginSection[]{
+	\begin{frame}{目次}
+		\small
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+}
+\AtBeginSubsection[]{
+	\begin{frame}{目次}
+		\small
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+}
+
+\mode
+<all>
